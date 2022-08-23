@@ -1,0 +1,28 @@
+---
+- hosts: test
+  tasks:
+
+   - name: Create C:\Temp
+     ansible.windows.win_file:
+       path: C:\Temp
+       state: directory
+
+   - name: Download CheckMK agent
+     win_get_url:
+       url: http://10.107.1.21:8080/cmk/check_mk/agents/windows/check_mk_agent.msi
+       dest: C:\Temp\checkmk.msi
+
+   - name: Install CheckMK agent
+     win_package:
+       path: C:\Temp\checkmk.msi
+       state: present
+
+   - name: Copy file
+     ansible.builtin.copy:
+       src: /storage/qemu-ga-x86_64.msi
+       dest: C:\Temp
+
+   - name: Install Qemu Guest Agent
+     win_package:
+       path: C:\Temp\qemu-ga-x86_64.msi
+       state: present
