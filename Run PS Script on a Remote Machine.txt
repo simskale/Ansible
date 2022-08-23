@@ -1,0 +1,43 @@
+# Execute a powershell script via ansible on a remote machine
+
+- name: Run PowerShell script
+  hosts: test
+  become: no
+  gather_facts: no
+  tasks:
+  - win_shell: "{{ item }}"
+    with_file:
+    - date.ps1
+
+# Execute a script over SSH
+
+ssh administrator@10.107.1.250 -T < date.ps1
+
+---
+- hosts: test
+  tasks:
+
+   - name: Create C:\Temp
+     ansible.windows.win_file:
+       path: C:\Temp2
+       state: directory
+
+   - name: Download CheckMK agent
+     win_get_url:
+       url: http://10.107.1.21:8080/cmk/check_mk/agents/windows/check_mk_agent.msi
+       dest: C:\Temp2\checkmk.msi
+
+   - name: Install CheckMK agent
+     win_package:
+       path: C:\Temp2\checkmk.msi
+       state: present
+
+   - name: Copy file
+     ansible.builtin.copy:
+       src: /storage/qemu-ga-x86_64.msi
+       dest: C:\Temp2
+
+#   - name: Run multi-lined shell commands
+#     ansible.windows.win_shell: New-Item -type Directory -name Yes -patch C:\
+
+   - win_shell: New-item -path C:\temp2 -name Testfile

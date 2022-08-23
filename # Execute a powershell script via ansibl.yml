@@ -1,0 +1,22 @@
+# Execute a powershell script via ansible on a remote machine
+- name: Run PowerShell script
+  hosts: test
+  become: no
+  gather_facts: no
+  tasks:
+  - win_shell: "{{ item }}"
+    with_file:
+    - date.ps1
+
+# Execute a script over SSH
+#ssh administrator@10.107.1.250 -T < date.ps1
+
+# Install an application on a host machine
+- name: Install CheckMK agent
+  win_package:
+    path: C:\Temp2\checkmk.msi
+    state: present
+
+#Execute a command on a remote host
+- name: Run multi-lined shell commands
+  ansible.windows.win_shell: New-Item -type Directory -name Yes -patch C:\
