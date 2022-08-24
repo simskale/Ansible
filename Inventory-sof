@@ -1,0 +1,74 @@
+[pbi]
+10.106.1.11	
+10.106.1.15	
+10.106.1.16		
+10.106.1.17	
+10.106.1.21	
+10.106.1.48
+10.106.1.49
+[corptest]
+10.107.1.13 #WSUS BG
+10.106.1.13	
+10.106.1.18		
+10.106.1.19		
+10.106.1.22		
+10.106.1.23	#*** BI Team
+10.106.1.26		
+10.106.1.27	
+10.106.1.28		
+10.106.1.29		
+10.106.1.31	
+10.106.1.32		
+10.106.1.33	
+10.106.1.36		
+10.106.1.38	
+10.106.1.41		
+10.106.1.42		
+10.106.1.43		
+10.106.1.52		
+10.106.1.55	# Engine Team
+10.106.1.56		
+10.106.1.57		
+10.106.1.60		
+10.106.1.62
+[workgroup]
+10.106.1.20
+10.106.1.24
+10.106.1.30
+10.106.1.44
+10.106.1.45	
+10.106.1.46
+10.106.1.47
+[pve]
+10.100.1.25
+10.100.1.26
+10.100.1.73
+10.100.1.74
+10.100.1.76
+10.100.1.77
+[linux]
+10.106.1.35 #Daren
+10.107.1.14 #SnipeIt
+10.107.1.19 #Cacti
+10.107.1.20 #PBS
+10.107.1.21 #CheckMK
+[domain_controllers]
+10.107.1.17 #PBI DC
+10.107.1.10 #CORPTEST DC
+[simo]
+10.107.1.250
+10.107.1.252
+10.107.1.253
+[simo:vars]
+ansible_user=administrator
+ansible_password=@scale250
+ansible_connection=ssh
+ansible_shell_type=powershell
+ansible_port=22
+#ansible_winrm_server_cert_validation=ignore
+[sofia:vars]
+ansible_user=administrator
+ansible_password=@scale250
+ansible_connection=winrm
+ansible_port=5985
+ansible_winrm_server_cert_validation=ignore

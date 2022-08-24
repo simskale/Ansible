@@ -8,8 +8,10 @@
     with_file:
     - date.ps1
 
-# Execute a script over SSH
+# Execute a script over SSH (linux)
 #ssh administrator@10.107.1.250 -T < date.ps1
+#ssh administrator@10.107.1.250 "get-date;get-netipaddress -addressfamily ipv4 | select-object ipaddress"
+
 
 # Install an application on a host machine
 - name: Install CheckMK agent
